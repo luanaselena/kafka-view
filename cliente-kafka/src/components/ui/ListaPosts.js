@@ -1,9 +1,16 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import PostCard from "./PostCard";
+import { useHistory } from "react-router-dom";
 
 const ListaPosts = (props) => {
 	const { posts } = props;
+  let history = useHistory();
+
+  //Si el usuario no esta logueado no puede entrar a la pagina
+  if (localStorage.getItem("usuario") === null){
+    //history.push("/signin");
+  }
 
 	return (
 		<Grid

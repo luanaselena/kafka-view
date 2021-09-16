@@ -1,9 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SignIn from "./components/ui/SignIn";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import SignUp from "./components/ui/SignUp";
 import BusquedaUsuarios from "./components/ui/BusquedaUsuarios";
 import PostsPropios from "./components/ui/PostsPropios";
