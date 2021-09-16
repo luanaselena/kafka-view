@@ -23,14 +23,12 @@ const PostCard = (props) => {
 	return (
 		<Card className={classes.root}>
 			<CardContent>
-				<CardActionArea>
 					<Typography gutterBottom variant="h5" component="h2">
 						{titulo}
 					</Typography>
           <Typography variant="subtitle1" gutterBottom>
 						Por: {usuario}
 					</Typography>
-				</CardActionArea>
 				<Typography variant="body2" color="textSecondary" component="p">
 					{contenido}
 				</Typography>
