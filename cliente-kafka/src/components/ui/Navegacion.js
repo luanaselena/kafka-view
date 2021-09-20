@@ -26,6 +26,9 @@ const Navegacion = () => {
 							<Link to="/posts" className="link">Home</Link>
 						</Nav.Link>
 						<Nav.Link>
+							<Link to="/subirpost" className="link">Subir Post</Link>
+						</Nav.Link>
+						<Nav.Link>
 							<Link to="/misposts" className="link">Mis Posts</Link>
 						</Nav.Link>
 						<Nav.Link>
