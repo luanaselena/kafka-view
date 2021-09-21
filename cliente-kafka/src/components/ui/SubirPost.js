@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
+import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
 import { apiAxios } from "../../config/axios";
 
@@ -31,19 +32,36 @@ const useStyles = makeStyles((theme) => ({
 
 const SubirPost = () => {
 	const classes = useStyles();
+	let history = useHistory();
+
+	//Si el usuario no esta logueado no puede entrar a la pagina
+	if (localStorage.getItem("usuario") === ""){
+		history.push("/signin");
+	}
 
 	const [titulo, settitulo] = useState("");
 	const [contenido, setcontenido] = useState("");
 	const [imagen, setimagen] = useState("");
+	const [showalert, setshowalert] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-    //Si titulo o contenido esta vacio tirar exception
+		//Si titulo o contenido esta vacio tirar exception
+		if (titulo === "" || contenido === "") {
+			console.log("ERROR: Titulo o contenido estan vacios");
+			setshowalert(true);
+		} else {
 
-		//Subir post a la API 
+			//Subir post a la API
+			//apiAxios.post()
 
-    //Que aparezca "Post Subido" en consola o pantalla
+			//Redirect a mis posts
+			//history.push('/misposts');
+		
+
+
+		}
 	};
 
 	return (
@@ -53,6 +71,19 @@ const SubirPost = () => {
 				<Typography component="h1" variant="h5">
 					Nuevo post
 				</Typography>
+
+				{showalert ? (
+					<Alert
+						variant="danger"
+						onClose={() => setshowalert(false)}
+						dismissible
+					>
+						<Alert.Heading>ERROR</Alert.Heading>
+						<p>
+							El titulo y el contenido no deben estar vacios.
+						</p>
+					</Alert>
+				) : null}
 
 				<Form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
 					<Form.Group className="mb-3">

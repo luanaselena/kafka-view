@@ -39,6 +39,11 @@ export default function SignIn() {
 	const [username, setusername] = useState("");
 	const [password, setpassword] = useState("");
 
+	//Si el usuario esta logueado no puede entrar a la pagina
+	if (localStorage.getItem("usuario") !== ""){
+		history.push("/posts");
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 

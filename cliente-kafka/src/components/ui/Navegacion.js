@@ -11,7 +11,7 @@ const Navegacion = () => {
 	const handleLogOut = e => {
 		e.preventDefault();
 		
-		localStorage.setItem("usuario", null);
+		localStorage.setItem("usuario", "");
 		history.push("/signin");
 	}
 
