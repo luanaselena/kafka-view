@@ -6,6 +6,7 @@ import BusquedaUsuarios from "./components/ui/BusquedaUsuarios";
 import PostsPropios from "./components/ui/PostsPropios";
 import Navegacion from "./components/ui/Navegacion";
 import Posts from "./components/ui/Posts";
+import SubirPost from "./components/ui/SubirPost";
 
 function App() {
 	return (
@@ -30,6 +31,9 @@ function App() {
 					</Route>
 					<Route path="/misposts">
 						<PostsPropios />
+					</Route>
+					<Route path="/subirpost">
+						<SubirPost />
 					</Route>
 				</Switch>
 			</div>

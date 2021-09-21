@@ -18,25 +18,32 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UsuarioCard() {
+export default function UsuarioCard({user}) {
   const classes = useStyles();
+
+  const {username, name, userPosts} = user;
+
+  const handleClick = e => {
+    e.preventDefault();
+
+    
+  }
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
-          Usuario
+          {username}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Nombre
+          {name}
         </Typography>
         <Typography variant="body2" component="p">
-          x Seguidores <br/>
-          x Posts
+          {userPosts.length} Posts
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Seguir</Button>
+        <Button size="small" onClick={e => handleClick(e)}>Seguir</Button>
       </CardActions>
     </Card>
   );

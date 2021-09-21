@@ -1,53 +1,60 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 800,
-    marginBottom: 5
+		width: 800,
+		marginBottom: 5,
 	},
 });
 
 const PostCard = (props) => {
 	const classes = useStyles();
+	let history = useHistory();
 
-  const {titulo, contenido, usuario, imagen} = props;
+	const { title, text, username, image } = props;
+
+	const handleClick = e => {
+		//Llamada a la api
+	}
 
 	return (
 		<Card className={classes.root}>
 			<CardContent>
-					<Typography gutterBottom variant="h5" component="h2">
-						{titulo}
-					</Typography>
-          <Typography variant="subtitle1" gutterBottom>
-						Por: {usuario}
-					</Typography>
+				<Typography gutterBottom variant="h5" component="h2">
+					{title}
+				</Typography>
+				<Typography variant="subtitle1" gutterBottom>
+					Por: {username}
+				</Typography>
 				<Typography variant="body2" color="textSecondary" component="p">
-					{contenido}
+					{text}
 				</Typography>
 				<CardMedia
 					component="img"
-					alt="Contemplative Reptile"
+					alt={title}
 					height="350"
-					image={imagen}
-					title="Contemplative Reptile"
+					image={image}
+					title={title}
 				/>
 			</CardContent>
 
-			<CardActions>
-				<Button size="small" color="primary">
-					Like
-				</Button>
-			</CardActions>
+			{history.location.pathname === "/misposts" ? null : (
+				<CardActions>
+					<Button size="small" color="primary" onClick={e => handleClick(e)}>
+						Like
+					</Button>
+				</CardActions>
+			)}
 		</Card>
 	);
-}
+};
 
 export default PostCard;

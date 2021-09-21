@@ -11,7 +11,7 @@ const Navegacion = () => {
 	const handleLogOut = e => {
 		e.preventDefault();
 		
-		localStorage.setItem("usuario", null);
+		localStorage.setItem("usuario", "");
 		history.push("/signin");
 	}
 
@@ -24,6 +24,9 @@ const Navegacion = () => {
 					<Nav className="me-auto">
 						<Nav.Link>
 							<Link to="/posts" className="link">Home</Link>
+						</Nav.Link>
+						<Nav.Link>
+							<Link to="/subirpost" className="link">Subir Post</Link>
 						</Nav.Link>
 						<Nav.Link>
 							<Link to="/misposts" className="link">Mis Posts</Link>
