@@ -34,8 +34,9 @@ const SubirPost = () => {
 	const classes = useStyles();
 	let history = useHistory();
 
+	const username = localStorage.getItem("usuario");
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (localStorage.getItem("usuario") === ""){
+	if (username === ""){
 		history.push("/signin");
 	}
 
@@ -43,6 +44,16 @@ const SubirPost = () => {
 	const [contenido, setcontenido] = useState("");
 	const [imagen, setimagen] = useState("");
 	const [showalert, setshowalert] = useState(false);
+
+
+	const apiSubirPosts = async () => {
+		const result = await apiAxios.post("http://localhost:8080/post", null, {
+			params: { username: username, title: titulo, text: contenido, image: imagen }
+		});
+		console.log(result.data);
+	};
+
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -54,7 +65,7 @@ const SubirPost = () => {
 		} else {
 
 			//Subir post a la API
-			//apiAxios.post()
+			apiSubirPosts();
 
 			//Redirect a mis posts
 			//history.push('/misposts');
@@ -110,7 +121,7 @@ const SubirPost = () => {
 					<Form.Group className="mb-3">
 						<Form.Label className={classes.label}>Imagen</Form.Label>
 						<Form.Control
-							type="password"
+							type="text"
 							placeholder="Copia aqui una URL de una imagen de internet"
 							value={imagen}
 							onChange={(e) => setimagen(e.target.value)}

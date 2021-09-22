@@ -20,26 +20,36 @@ const BusquedaUsuarios = () => {
 	const classes = useStyles();
 	let history = useHistory();
 
+	const usernameSesion = localStorage.getItem("usuario");
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (localStorage.getItem("usuario") === ""){
+	if (usernameSesion === ""){
 		history.push("/signin");
 	}
 
 	const [busqueda, setbusqueda] = useState("");
 	const [usuarios, setusuarios] = useState([]);
+	const [usuariosseguidos, setusuariosseguidos] = useState([]);
 
-	const fetchUsers = async () => {
-		const result = await apiAxios.get("http://localhost:8080/getUsers");
-		setusuarios(result.data);
+	const fetchApi = async () => {
+		const resultUsers = await apiAxios.get("http://localhost:8080/getUsers");
+		setusuarios(resultUsers.data);
+
+		const resultSeguidos = await apiAxios.get("http://localhost:8080/getFollowingUsers", {params: {
+			username: usernameSesion
+		}});
+		setusuariosseguidos(resultSeguidos.data);
 	};
 
 	useEffect(() => {
-		fetchUsers();
+		fetchApi();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleBuscar = (e) => {
 		e.preventDefault();
 	};
+
+	//console.log(usuariosseguidos);
 
 	return (
 		<div className={classes.root}>
@@ -72,6 +82,7 @@ const BusquedaUsuarios = () => {
 									<UsuarioCard 
 										key={user.id}
 										user={user}
+										usuariosSeguidos={usuariosseguidos}
 									/>
 								</Col>
 							))}
