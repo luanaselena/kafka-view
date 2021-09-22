@@ -7,6 +7,7 @@ import PostsPropios from "./components/ui/PostsPropios";
 import Navegacion from "./components/ui/Navegacion";
 import Posts from "./components/ui/Posts";
 import SubirPost from "./components/ui/SubirPost";
+import Notificaciones from "./components/ui/Notificaciones";
 
 function App() {
 	return (
@@ -23,7 +24,10 @@ function App() {
           <Route path="/signup">
 						<SignUp />
 					</Route>
-          <Route path="/busquedausuarios">
+					<Route path="/notificaciones">
+						<Notificaciones />
+					</Route>
+          			<Route path="/busquedausuarios">
 						<BusquedaUsuarios />
 					</Route>
 					<Route path="/posts">
