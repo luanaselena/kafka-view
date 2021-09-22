@@ -27,10 +27,9 @@ const PostCard = (props) => {
 	//Buscar si el usuario de la sesion esta en la lista de usuarios likeados del post.
 	//Si esta se le pone "Likeado"
 	let esLikeado;
-	if(history.location.pathname === "/posts") {
+	if (history.location.pathname === "/posts") {
 		esLikeado = likedUsers.filter((u) => u.username === usernameSesion);
 	}
-
 
 	const handleClick = async (e) => {
 		e.preventDefault();
@@ -67,7 +66,13 @@ const PostCard = (props) => {
 				/>
 			</CardContent>
 
-			{history.location.pathname === "/misposts" ? null : (
+			{history.location.pathname === "/misposts" ? (
+				<CardActions>
+					<Button size="small" color="primary">
+						{likedUsers.length} likes
+					</Button>
+				</CardActions>
+			) : (
 				<CardActions>
 					{esLikeado.length === 0 ? (
 						<Button

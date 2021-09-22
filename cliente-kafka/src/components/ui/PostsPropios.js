@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -22,12 +22,11 @@ const PostsPropios = () => {
 	let history = useHistory();
 
 	const username = localStorage.getItem("usuario");
-	
+
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (username === "" || username === undefined){
+	if (username === "" || username === undefined) {
 		history.push("/signin");
 	}
-
 
 	const [posts, setposts] = useState([]);
 
@@ -44,7 +43,6 @@ const PostsPropios = () => {
 
 	console.log(posts);
 
-
 	return (
 		<div className={classes.root}>
 			<Container maxWidth="md">
@@ -53,28 +51,28 @@ const PostsPropios = () => {
 						<h1 className={classes.paper}>MIS POSTS</h1>
 					</Grid>
 					<Grid item xs={12}>
-					<Grid
-			container
-			direction="column"
-			justifyContent="space-between"
-			alignItems="center"
-		>
-			{posts === undefined || posts.length === 0? (
-				<p>No hay posts</p>
-			) : (
-				posts.map((item) => (
-					<PostCard
-						key={item.id}
-						id={item.id}
-						title={item.title}
-						text={item.text}
-						username={item.username}
-						image={item.image}
-					/>
-					
-				))
-			)}
-		</Grid>
+						<Grid
+							container
+							direction="column"
+							justifyContent="space-between"
+							alignItems="center"
+						>
+							{posts === undefined || posts.length === 0 ? (
+								<p>No hay posts</p>
+							) : (
+								posts.map((item) => (
+									<PostCard
+										key={item.post.id}
+										id={item.post.id}
+										title={item.post.title}
+										text={item.post.text}
+										username={item.post.username}
+										image={item.post.image}
+										likedUsers={item.likedsUsers}
+									/>
+								))
+							)}
+						</Grid>
 					</Grid>
 				</Grid>
 			</Container>
