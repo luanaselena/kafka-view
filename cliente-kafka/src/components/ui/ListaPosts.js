@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import PostCard from "./PostCard";
 
 const ListaPosts = (props) => {
-	const { posts } = props;
+	const { posts, tipo } = props;
 
 	return (
 		<Grid
@@ -15,14 +15,17 @@ const ListaPosts = (props) => {
 			{posts === undefined || posts.length === 0? (
 				<p>No hay posts</p>
 			) : (
-				posts.map((p) => (
+				posts.map((item) => (
 					<PostCard
-						key={p.id}
-						title={p.title}
-						text={p.text}
-						username={p.username}
-						image={p.image}
+						key={item.post.id}
+						id={item.post.id}
+						title={item.post.title}
+						text={item.post.text}
+						username={item.post.username}
+						image={item.post.image}
+						likedUsers={item.likedsUsers}
 					/>
+					
 				))
 			)}
 		</Grid>
