@@ -41,6 +41,9 @@ export default function UsuarioCard({ user, usuariosSeguidos }) {
 			params: { followingId: id, followerUsername: usuarioSesion },
 		});
 
+    //Refresca pagina
+    window.location.replace('');
+
 		console.log(result);
 	};
 

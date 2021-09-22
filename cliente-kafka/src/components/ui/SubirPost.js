@@ -36,7 +36,7 @@ const SubirPost = () => {
 
 	const username = localStorage.getItem("usuario");
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (username === ""){
+	if (username === "" || username === undefined){
 		history.push("/signin");
 	}
 
@@ -63,15 +63,11 @@ const SubirPost = () => {
 			console.log("ERROR: Titulo o contenido estan vacios");
 			setshowalert(true);
 		} else {
-
 			//Subir post a la API
 			apiSubirPosts();
 
 			//Redirect a mis posts
-			//history.push('/misposts');
-		
-
-
+			history.push('/misposts');
 		}
 	};
 

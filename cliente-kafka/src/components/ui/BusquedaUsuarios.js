@@ -22,7 +22,7 @@ const BusquedaUsuarios = () => {
 
 	const usernameSesion = localStorage.getItem("usuario");
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (usernameSesion === ""){
+	if (usernameSesion === "" || usernameSesion === undefined){
 		history.push("/signin");
 	}
 

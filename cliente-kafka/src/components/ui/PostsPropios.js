@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ListaPosts from "./ListaPosts";
+import PostCard from "./PostCard";
 import { apiAxios } from "../../config/axios";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -18,8 +19,16 @@ const useStyles = makeStyles((theme) => ({
 
 const PostsPropios = () => {
 	const classes = useStyles();
+	let history = useHistory();
 
 	const username = localStorage.getItem("usuario");
+	
+	//Si el usuario no esta logueado no puede entrar a la pagina
+	if (username === "" || username === undefined){
+		history.push("/signin");
+	}
+
+
 	const [posts, setposts] = useState([]);
 
 	const fetchPosts = async (username) => {
@@ -44,10 +53,28 @@ const PostsPropios = () => {
 						<h1 className={classes.paper}>MIS POSTS</h1>
 					</Grid>
 					<Grid item xs={12}>
-						<ListaPosts 
-              posts={posts}
-							tipo="propios"
-            />
+					<Grid
+			container
+			direction="column"
+			justifyContent="space-between"
+			alignItems="center"
+		>
+			{posts === undefined || posts.length === 0? (
+				<p>No hay posts</p>
+			) : (
+				posts.map((item) => (
+					<PostCard
+						key={item.id}
+						id={item.id}
+						title={item.title}
+						text={item.text}
+						username={item.username}
+						image={item.image}
+					/>
+					
+				))
+			)}
+		</Grid>
 					</Grid>
 				</Grid>
 			</Container>

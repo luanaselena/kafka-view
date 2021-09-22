@@ -56,6 +56,9 @@ export default function SignIn() {
 			//Si son correctos ingresa
 			localStorage.setItem("usuario", username);
 			history.push("/posts");
+
+			//Refresca pagina
+			window.location.replace('');
 		} else {
 			//Si no son correctos tira mensaje por la consola
 			console.log("Datos incorrectos.");

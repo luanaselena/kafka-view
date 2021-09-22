@@ -13,6 +13,9 @@ const Navegacion = () => {
 
 		localStorage.setItem("usuario", "");
 		history.push("/signin");
+
+		//Refresca pagina
+		window.location.replace('');
 	};
 
 	const username = localStorage.getItem("usuario");
