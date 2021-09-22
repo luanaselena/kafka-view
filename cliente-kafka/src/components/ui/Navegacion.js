@@ -44,6 +44,11 @@ const Navegacion = () => {
 							Buscar usuarios
 						</Link>
 					</Nav.Link>
+					<Nav.Link>
+						<Link to="/notificaciones" className="link">
+							Notificaciones
+						</Link>
+					</Nav.Link>
 				</Nav>
 
 				<Nav className="mr-auto">
