@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
+import { apiAxios } from "../../config/axios";
 
 const useStyles = makeStyles({
 	root: {
@@ -19,11 +20,31 @@ const PostCard = (props) => {
 	const classes = useStyles();
 	let history = useHistory();
 
-	const { title, text, username, image } = props;
+	const { id, title, text, username, image, likedUsers } = props;
 
-	const handleClick = e => {
-		//Llamada a la api
+	const usernameSesion = localStorage.getItem("usuario");
+
+	//Buscar si el usuario de la sesion esta en la lista de usuarios likeados del post.
+	//Si esta se le pone "Likeado"
+	let esLikeado;
+	if(history.location.pathname === "/posts") {
+		esLikeado = likedUsers.filter((u) => u.username === usernameSesion);
 	}
+
+
+	const handleClick = async (e) => {
+		e.preventDefault();
+
+		//Llamada a la api
+		const result = await apiAxios.post("http://localhost:8080/like", null, {
+			params: { username: usernameSesion, post_id: id },
+		});
+
+		console.log(result);
+
+		//Refresca pagina
+		window.location.replace("");
+	};
 
 	return (
 		<Card className={classes.root}>
@@ -40,7 +61,7 @@ const PostCard = (props) => {
 				<CardMedia
 					component="img"
 					alt={title}
-					height="350"
+					height="250"
 					image={image}
 					title={title}
 				/>
@@ -48,9 +69,19 @@ const PostCard = (props) => {
 
 			{history.location.pathname === "/misposts" ? null : (
 				<CardActions>
-					<Button size="small" color="primary" onClick={e => handleClick(e)}>
-						Like
-					</Button>
+					{esLikeado.length === 0 ? (
+						<Button
+							size="small"
+							color="primary"
+							onClick={(e) => handleClick(e)}
+						>
+							{likedUsers.length} likes - Dar like
+						</Button>
+					) : (
+						<Button size="small" color="primary">
+							{likedUsers.length} likes - Likeado
+						</Button>
+					)}
 				</CardActions>
 			)}
 		</Card>

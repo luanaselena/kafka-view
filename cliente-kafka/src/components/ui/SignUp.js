@@ -56,6 +56,9 @@ export default function SignUp() {
 			//Si no existe guardar en localStorage y entrar
 			localStorage.setItem("usuario", username);
 			history.push("/posts");
+			
+			//Refresca pagina
+			window.location.replace('');
 		} else {
 			//Si existe tira error por consola
 			console.log(`El usuario ${username} no pudo ser creado.`);
