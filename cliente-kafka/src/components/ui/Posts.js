@@ -23,10 +23,9 @@ const Posts = () => {
 
 	const username = localStorage.getItem("usuario");
 	//Si el usuario no esta logueado no puede entrar a la pagina
-	if (username === "" || username === undefined){
+	if (username === "" || username === undefined) {
 		history.push("/signin");
 	}
-
 
 	const [posts, setposts] = useState([]);
 
@@ -51,29 +50,28 @@ const Posts = () => {
 						<h1 className={classes.paper}>POSTS</h1>
 					</Grid>
 					<Grid item xs={12}>
-					<Grid
-			container
-			direction="column"
-			justifyContent="space-between"
-			alignItems="center"
-		>
-			{posts === undefined || posts.length === 0? (
-				<p>No hay posts</p>
-			) : (
-				posts.map((item) => (
-					<PostCard
-						key={item.post.id}
-						id={item.post.id}
-						title={item.post.title}
-						text={item.post.text}
-						username={item.post.username}
-						image={item.post.image}
-						likedUsers={item.likedsUsers}
-					/>
-					
-				))
-			)}
-		</Grid>
+						<Grid
+							container
+							direction="column"
+							justifyContent="space-between"
+							alignItems="center"
+						>
+							{posts === undefined || posts.length === 0 ? (
+								<p>No hay posts</p>
+							) : (
+								posts.map((item) => (
+									<PostCard
+										key={item.post.id}
+										id={item.post.id}
+										title={item.post.title}
+										text={item.post.text}
+										username={item.post.username}
+										image={item.post.image}
+										likedUsers={item.likedsUsers}
+									/>
+								))
+							)}
+						</Grid>
 					</Grid>
 				</Grid>
 			</Container>
