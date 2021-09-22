@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { apiAxios } from "../../config/axios";
 import { useHistory } from "react-router-dom";
 import Navegacion from "./Navegacion";
@@ -51,13 +47,7 @@ const Notificaciones = () => {
 						<h1 className={classes.paper}>lista notis</h1>
 					</Grid>
 					<Grid item xs={12}>
-						<Grid
-							container
-							direction="column"
-							justifyContent="space-between"
-							alignItems="center"
-						>
-						</Grid>
+						
 					</Grid>
 				</Grid>
 			</Container>
